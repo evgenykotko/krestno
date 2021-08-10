@@ -14,18 +14,26 @@ def pole_reload(pole):
     hod(pole)
 
 def hod(pole):
-    a, b, c = input("Введите координаты и символ: ").split()
-    if 1 <= int(a) <= 3 and 1 <= int(b) <= 3:
-        if pole[int(a) - 1][int(b) - 1] == ".":
-            pole[int(a) - 1][int(b) - 1] = str(c)
-        else:
-            print("Квадрат занят, попробуйте другой")
-            hod(pole)
-    else:
-        print("Координаты вне игрового поля, попробуйте еще раз")
-        hod(pole)
-    pole_reload(pole)
+    while True:
+        coord = input("Введите координаты: ").split()
+        if len(coord) != 2:
+            print("Введите 2 координата.")
+            continue
 
+        a, b = coord
+
+        if not (a.isdigit()) or not (b.isdigit()):
+            print("Введите числа!")
+            continue
+        a, b = int(a), int(b)
+        if 1 > a > 3 and 1 > b > 3:
+            print("Координаты вне игрового поля, попробуйте еще раз")
+            continue
+
+        if pole[a - 1][b - 1] != ".":
+            print("Квадрат занят, попробуйте другой")
+            continue
+        return a, b
 def proverka_1(pole):
     count = 0
     for i in range(len(pole)):
