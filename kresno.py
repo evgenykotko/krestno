@@ -15,10 +15,14 @@ def pole_reload(pole):
 
 def hod(pole):
     a, b, c = input("Введите координаты и символ: ").split()
-    if pole[int(a)-1][int(b)-1] == ".":
-        pole[int(a) - 1][int(b) - 1] = str(c)
+    if 1 <= int(a) <= 3 and 1 <= int(b) <= 3:
+        if pole[int(a) - 1][int(b) - 1] == ".":
+            pole[int(a) - 1][int(b) - 1] = str(c)
+        else:
+            print("Квадрат занят, попробуйте другой")
+            hod(pole)
     else:
-        print("Квадрат занят, попробуйте другой")
+        print("Координаты вне игрового поля, попробуйте еще раз")
         hod(pole)
     pole_reload(pole)
 
